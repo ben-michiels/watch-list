@@ -1,19 +1,23 @@
+import { Services } from "@/api";
 import WatchList from "@/models/WatchList";
-import { reactive, toRefs } from "vue";
+import { reactive, toRefs, watch } from "vue";
 
 interface State {
   lists: WatchList[];
 }
 
-export default function useWatchLists() {
+const listsKey = "WatchLists";
+
+export default function useWatchLists(services: Services) {
+  const { storageService } = services;
   const state = reactive<State>({
-    lists: [
+    lists: storageService.getItem(listsKey, () => [
       {
         title: "New List",
         id: 1,
         content: [],
       },
-    ],
+    ]),
   });
 
   function findList(id: number): WatchList | undefined {
@@ -96,6 +100,10 @@ export default function useWatchLists() {
 
     list.title = newTitle;
   }
+
+  watch(state.lists, (lists) => {
+    storageService.setItem(listsKey, lists);
+  });
 
   return {
     ...toRefs(state),
