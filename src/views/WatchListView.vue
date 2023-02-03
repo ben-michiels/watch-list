@@ -1,15 +1,15 @@
 <template>
   <v-container>
-    <watch-list />
+    <list-card />
   </v-container>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import WatchList from "@/components/WatchList.vue";
+import ListCard from "@/components/ListCard.vue";
 
 export default defineComponent({
   name: "WatchListView",
-  components: { WatchList }
+  components: { ListCard }
 });
 </script>
