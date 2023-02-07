@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :theme="theme">
     <notification-snackbars />
 
     <app-bar />
@@ -28,9 +28,13 @@ export default defineComponent({
   },
   setup(props) {
     const store: Store = defineStore(props.services);
+    const { themeStore } = store;
+    const { theme } = themeStore;
     provide(StoreKey, store);
 
-    return {};
+    return {
+      theme,
+    };
   },
 });
 </script>
