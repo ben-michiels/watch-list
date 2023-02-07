@@ -90,6 +90,8 @@ export default function useWatchLists(services: Services) {
 
     if (newTitle == "") {
       throw new Error("New title can not be empty");
+    } else if (newTitle.length > 30) {
+      throw new Error("New title exceeds maximum length of 30 characters");
     } else if (findTitle(newTitle)) {
       throw new Error(
         'A list with the title "' + newTitle + '" already exists'
