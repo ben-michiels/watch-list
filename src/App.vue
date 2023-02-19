@@ -43,4 +43,13 @@ export default defineComponent({
 .v-dialog > .v-overlay__content {
   align-items: center;
 }
+
+@font-face {
+  font-family: anton;
+  src: url(./assets/fonts/Anton-Regular.ttf);
+}
+
+.anton {
+  font-family: "anton";
+}
 </style>
