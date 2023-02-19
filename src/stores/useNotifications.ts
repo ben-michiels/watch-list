@@ -39,7 +39,7 @@ export default function useNotifications() {
     });
   }
 
-  function notifyInfo(message: string, timeout = 5000) {
+  function notifyInfo(message: string, timeout = 2500) {
     addNotification({
       message,
       timeout,
@@ -47,10 +47,19 @@ export default function useNotifications() {
     });
   }
 
+  function notifySuccess(message: string, timeout = 2500) {
+    addNotification({
+      message,
+      timeout,
+      type: NotificationType.Success,
+    });
+  }
+
   return {
     ...toRefs(state),
     notifyError,
     notifyInfo,
+    notifySuccess,
     deleteNotification,
   };
 }
